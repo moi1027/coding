@@ -27,6 +27,7 @@ public class SlidingWindow {
         MyQueue myQueue = new MyQueue();
         for(int i = 0;i<len;i++){
             if(i<k-1){
+                //先插入k-1个数
                 myQueue.push(nums[i]);
             }else{
                 myQueue.push(nums[i]);
