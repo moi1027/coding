@@ -18,16 +18,20 @@ public class LongerNotRepeatChar {
     public static int lengthOfLongestSubstring(String s) {
         String[] arr = s.split("");
         int len = arr.length;
+        if("".equals(s)){
+            return 0;
+        }else if(" ".equals(s)){
+            return 1;
+        }
         MyQueue1 myQueue1 = new MyQueue1();
         for(int i = 0;i<len;i++){
             myQueue1.push(arr[i]);
         }
-        System.out.println(myQueue1.getMax());
         return myQueue1.getMax();
     }
 
     public static void main(String[] args) {
-        String s = "pwwkew";
+        String s = "";
         lengthOfLongestSubstring(s);
     }
 
@@ -51,6 +55,7 @@ class MyQueue1{
             list.push(value);
             set.add(value);
             count++;
+            max++;
         }else{
             if(set.contains(value)){
                 while(!value.equals(list.getLast())) {
