@@ -1,30 +1,30 @@
-package org.moi.algorithm.leecode;
+package org.moi.algorithm.leecode.stack;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  * @program:
- * @description: leeCode 第76题：最小覆盖子串
+ * @description: leeCode 第438题 找到字符串中所有字母异位词 难度：中级
  * @author: moi
- * @create: 2020/11/18 20:53
+ * @create: 2020/11/19 20:49
  **/
-public class MinimumWindowSubstring {
+public class FindAllAnagramsInString {
 
     /**
-     * 给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 "" 。
+     * 给定一个字符串 s 和一个非空字符串 p，找到 s 中所有是 p 的字母异位词的子串，返回这些子串的起始索引。
      *
-     * 注意：如果 s 中存在这样的子串，我们保证它是唯一的答案。
+     * 字符串只包含小写英文字母，并且字符串 s 和 p 的长度都不超过 20100。
      *
-     * 用滑动窗口解决，用left和right双指针来包住窗口，移动左右指针来滑动窗口
      */
 
-    public static String minWindow(String s, String t) {
+    public static List<Integer> findAnagrams(String s, String p) {
         String[] a = s.split("");
-        String[] b = t.split("");
+        String[] b = p.split("");
         Map<String,Integer> baseMap = new HashMap<String, Integer>();
         Map<String,Integer> targetMap = new HashMap<String, Integer>();
-        //将t字符串的数据分割成单个字符插入到baseMap中，为了以后好判断窗口中是否存在所有的t中的字符串
         for(String c:b){
             if(baseMap.containsKey(c)){
                 baseMap.put(c,baseMap.get(c)+1);
@@ -34,10 +34,7 @@ public class MinimumWindowSubstring {
         }
         int left = 0,right = 0;
         int variable = 0;
-        int len = Integer.MAX_VALUE;
-        int start = 0;
-
-        //滑动窗口的一种模板解决方式
+        List<Integer> list = new ArrayList<Integer>();
         while(right<a.length){
             String d = a[right];
             right++;
@@ -51,11 +48,9 @@ public class MinimumWindowSubstring {
                     variable++;
                 }
             }
-
             while(variable == baseMap.size()){
-                if(right-left<len){
-                    len = right-left;
-                    start = left;
+                if(right-left == b.length){
+                    list.add(left);
                 }
                 String e = a[left];
                 left++;
@@ -67,12 +62,12 @@ public class MinimumWindowSubstring {
                 }
             }
         }
-        return len == Integer.MAX_VALUE?"":s.substring(start,start+len);
+        return list;
     }
 
     public static void main(String[] args) {
-        String s = "ADOBECODEBANC";
-        String t = "ABC";
-        System.out.println(minWindow(s,t));
+        String s = "abab";
+        String p = "ab";
+        findAnagrams(s,p);
     }
 }

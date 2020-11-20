@@ -1,4 +1,4 @@
-package org.moi.algorithm.leecode;
+package org.moi.algorithm.leecode.slidingwindow;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * @program:
- * @description: 239题，用滑动串口解决
+ * @description: 239题，用滑动窗口解决
  * @author: moi
  * @create: 2020/11/16 17:32
  **/

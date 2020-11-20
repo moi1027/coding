@@ -1,4 +1,4 @@
-package org.moi.algorithm.leecode;
+package org.moi.algorithm.leecode.stack;
 
 import java.util.Stack;
 
