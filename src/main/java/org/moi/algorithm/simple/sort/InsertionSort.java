@@ -1,4 +1,4 @@
-package org.moi.algorithm.simple;
+package org.moi.algorithm.simple.sort;
 
 /**
  * @program:
