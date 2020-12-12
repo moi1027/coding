@@ -40,6 +40,15 @@ public class SumOfSubarrayMinimums {
         d2 = new LinkedList<>();
     }
 
+    public Deque<Integer> getD1(){
+        return d1;
+    }
+
+
+    public Deque<Integer> getD2(){
+        return d2;
+    }
+
     public void push(int x) {
         d1.push(x);
         if(d2.isEmpty()){
@@ -66,16 +75,29 @@ public class SumOfSubarrayMinimums {
         return d2.peek();
     }
 
-    public int sumSubarrayMins(int[] arr) {
+    public void empty(){
+        d1.clear();
+        d2.clear();
+    }
+
+    public static int sumSubarrayMins(int[] arr) {
         int count = 0;
+        int mod = (int) 1e9 + 7;
         SumOfSubarrayMinimums s = new SumOfSubarrayMinimums();
         for(int i = 0;i<arr.length;i++){
-            for(int j = 0;j<arr.length;j+=i){
-                s.push(arr[i]);
+            for(int j = i;j<arr.length;j++){
+                s.push(arr[j]);
+                count=(count+s.min())%mod;
             }
-
+            s.empty();
         }
         return count;
+    }
+
+
+    public static void main(String[] args) {
+        int[] arr = {3,1,2,4};
+        System.out.println(sumSubarrayMins(arr));
     }
 
 
