@@ -39,6 +39,9 @@ public class TagValidator {
             char c = code.charAt(i);
             if(c == '<'){
                 if(!sb.toString().contains("<![CDATA")) {
+                    if(sb.toString().contains("<")){
+                        return false;
+                    }
                     sb.delete(0, sb.length());
                 }
                 num = 0;
@@ -57,20 +60,28 @@ public class TagValidator {
                 }
 
                 String s = sb.toString();
-                sb.delete(0,sb.length());
+
                 if(!s.contains("<![CDATA")&&!s.contains("]]>")){
-                    if(map.containsKey(s)||!stack.isEmpty()){
+                    if(map.containsKey(s)&&!stack.isEmpty()){
                         if(stack.peek().equals(map.get(s))) {
                             stack.pop();
+                            if(stack.isEmpty()&&i!=code.length()-1){
+                                return false;
+                            }
                         }
                     }else {
-                        for(int j = 1;j<sb.length()-1;j++){
-                            if(sb.charAt(j)<'A'||sb.charAt(j)>'Z'){
+                        for(int j = 1;j<s.length()-1;j++){
+                            if(s.charAt(j)<'A'||s.charAt(j)>'Z'){
                                 return false;
                             }
                         }
                         map.put(s.substring(0, 1) + "/" + s.substring(1), s);
                         stack.push(s);
+                        sb.delete(0,sb.length());
+                    }
+                }else{
+                    if(s.contains("<![CDATA")){
+                        sb.delete(7,sb.length());
                     }
                 }
                 num = 0;
@@ -80,7 +91,7 @@ public class TagValidator {
     }
 
     public static void main(String[] args) {
-        String code = "<TRUE><![CDATA[wahaha]]]><![CDATA[]> wahaha]]></TRUE>";
+        String code = "<A><![CDATA[</A>]]123></A>";
         System.out.println(isValid(code));
     }
 }
