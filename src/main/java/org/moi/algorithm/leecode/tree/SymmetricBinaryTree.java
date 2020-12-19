@@ -21,6 +21,7 @@ public class SymmetricBinaryTree {
         return root ==null?true:compare(root.left,root.right);
     }
 
+
     public  boolean compare(TreeNode left,TreeNode right){
         if(left==null&&right==null){
             return true;
