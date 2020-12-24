@@ -45,6 +45,7 @@ public class MergeIntervals {
         for(int i = 0;i<intervals.length;i++){
             int l = intervals[i][0];
             int r = intervals[i][1];
+            //比较数组右边界的大小
             if(list.size()==0||list.get(list.size()-1)[1]<l){
                 list.add(new int[]{l,r});
             }else{
