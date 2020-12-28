@@ -42,49 +42,18 @@ public class MaxProfit {
 
 
 
-    static class DataInfo{
-        private int price;
-        private int day;
-        public DataInfo(int p,int d){
-            price = p;
-            day = d;
-        }
-    }
+
 
     public static int maxProfit(int[] prices) {
         if(prices.length == 0){
             return 0;
         }
-        //建立一个小根堆
-        PriorityQueue<DataInfo> priorityQueue = new PriorityQueue<>(new Comparator<DataInfo>() {
-            @Override
-            public int compare(DataInfo o1, DataInfo o2) {
-                if(o1.price<o2.price){
-                    return o2.day-o1.day;
-                }else{
-                    return o1.day-o2.day;
-                }
-            }
-        });
-        PriorityQueue<DataInfo> priorityQueue1 = new PriorityQueue<>(new Comparator<DataInfo>() {
-            @Override
-            public int compare(DataInfo o1, DataInfo o2) {
-                if(o2.price>=o1.price){
-                    if(o2.day>o1.day){
-                        return o2.day-o1.day;
-                    }else{
-                        return o2.day-o1.day;
-                    }
-                }else{
-                    return o2.day-o1.day;
-                }
-            }
-        });
-        int j = 1;
-        for(int i:prices){
-            priorityQueue.add(new DataInfo(i,j++));
+        int ans = 0;
+        for(int i=1;i<prices.length;i++){
+            //将每个股票上涨的阶段都记录并对利益相加
+            ans += Math.max(0,prices[i]-prices[i-1]);
         }
-        return 0;
+        return ans;
     }
 
 
