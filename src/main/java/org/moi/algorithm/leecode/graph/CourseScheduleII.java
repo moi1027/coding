@@ -47,7 +47,7 @@ public class CourseScheduleII {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         edges = new ArrayList<>();
         for (int i = 0; i < numCourses; i++) {
-            edges.add(new ArrayList<Integer>());
+            edges.add(new ArrayList<>());
         }
         indeg = new int[numCourses];
         for(int[] info:prerequisites){
