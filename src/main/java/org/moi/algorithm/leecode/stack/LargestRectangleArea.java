@@ -1,11 +1,7 @@
-package org.moi.algorithm.leecode.sort;
+package org.moi.algorithm.leecode.stack;
 
-import org.omg.PortableInterceptor.INACTIVE;
-
-import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Stack;
 
 /**
  * @program:
