@@ -30,7 +30,7 @@ public class LongestConsecutive {
      *
      */
 
-    public int longestConsecutive(int[] nums) {
+    public int longestConsecutive1(int[] nums) {
         if(nums.length == 0){
             return 0;
         }
@@ -51,8 +51,28 @@ public class LongestConsecutive {
         return max;
     }
 
+    public int longestConsecutive2(int[] nums){
+        if(nums.length == 0){
+            return 0;
+        }
+        Map<Integer,Integer> map = new HashMap<>();
+        int max = Integer.MIN_VALUE;
+        for (int num:nums) {
+            if(!map.containsKey(num)){
+                int left = map.get(num-1)==null?0:map.get(num-1);
+                int right = map.get(num+1)==null?0:map.get(num+1);
+                int cur = 1+left+right;
+                max = Math.max(cur,max);
+                map.put(num,cur);
+                map.put(num-left,cur);
+                map.put(num+right,cur);
+            }
+        }
+        return max;
+    }
+
     public static void main(String[] args) {
         int[] arr = {0,3,7,2,5,8,4,6,0,1};
-        System.out.println(new LongestConsecutive().longestConsecutive(arr));
+        System.out.println(new LongestConsecutive().longestConsecutive2(arr));
     }
 }
