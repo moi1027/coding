@@ -52,7 +52,7 @@ public class PalindromeList {
         ListNode fast = head;
         ListNode slow = head;
         Stack<Integer> stack = new Stack<>();
-        while(fast.next != null||fast.next.next!=null){
+        while(fast.next != null&&fast.next.next!=null){
             slow = slow.next;
             fast = fast.next.next;
         }

@@ -54,7 +54,7 @@ public class LowestCommonAncestor {
         AncestorInfo rightInfo = findLowestCommonAncestor(root.right,p,q);
         TreeNode AncestorNode = null;
         boolean findP = root == p||leftInfo.ispAncestor||rightInfo.ispAncestor;
-        boolean findQ = root == p||leftInfo.isqAncestor||rightInfo.isqAncestor;
+        boolean findQ = root == q||leftInfo.isqAncestor||rightInfo.isqAncestor;
         if(leftInfo.node != null){
             AncestorNode = leftInfo.node;
         }
