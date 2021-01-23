@@ -23,6 +23,7 @@ public class DailyTemperatures {
         Stack<Integer> stack = new Stack<Integer>();
         //由于是判断隔几天，所以就用下标来标记
         for(int i = len -1;i>=0;i--){
+            //把栈里面所有小于等于的数的下标弹出
             while(!stack.isEmpty()&&nums[stack.peek()]<=nums[i]){
                 stack.pop();
             }
