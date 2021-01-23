@@ -57,6 +57,7 @@ public class MinStack {
 
     public void pop() {
         d1.pop();
+
         d2.pop();
     }
 
