@@ -23,7 +23,7 @@ public class DailyTemperatures {
         Stack<Integer> stack = new Stack<Integer>();
         //由于是判断隔几天，所以就用下标来标记
         for(int i = len -1;i>=0;i--){
-            if(!stack.isEmpty()&&nums[stack.peek()]<nums[i]){
+            while(!stack.isEmpty()&&nums[stack.peek()]<=nums[i]){
                 stack.pop();
             }
             nums2[i] = stack.isEmpty()?0:stack.peek()-i;
@@ -33,7 +33,7 @@ public class DailyTemperatures {
     }
 
     public static void main(String[] args) {
-        int[] nums = {73,74,75,71,69,76};
+        int[] nums = {89,62,70,58,47,47,46,76,100,70};
         dailyTemperatures(nums);
     }
 }
