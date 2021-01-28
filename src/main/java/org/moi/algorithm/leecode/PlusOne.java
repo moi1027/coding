@@ -29,7 +29,21 @@ public class PlusOne {
      *
      */
 
-    public int[] plusOne(int[] digits) {
+
+    public int[] plusOne1(int[] digits) {
+        int len = digits.length;
+        for(int i = len - 1; i >= 0; i--) {
+            digits[i]++;
+            digits[i] %= 10;
+            if(digits[i]!=0)
+                return digits;
+        }
+        digits = new int[len + 1];
+        digits[0] = 1;
+        return digits;
+    }
+
+    public int[] plusOne2(int[] digits) {
         Stack<Integer> stack = new Stack<>();
         for (int i = 0; i < digits.length; i++) {
             stack.add(digits[i]);
@@ -74,6 +88,6 @@ public class PlusOne {
 
     public static void main(String[] args) {
         int[] arr = {9,8,9};
-        new PlusOne().plusOne(arr);
+        new PlusOne().plusOne1(arr);
     }
 }
