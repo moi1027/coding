@@ -1,5 +1,8 @@
 package org.moi.algorithm.simple.classic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @program:
  * @description: N皇后问题
@@ -14,13 +17,17 @@ public class NQueen {
      */
 
 
-    public static int num1(int n) {
+    public static List<List<String>> lists = new ArrayList<>();
+
+    public static List<List<String>> num1(int n) {
         if (n < 1) {
-            return 0;
+            return new ArrayList<>();
         }
+
         // record[0] ?  record[1]  ?  record[2]
         int[] record = new int[n]; // record[i] -> i行的皇后，放在了第几列
-        return process1(0, record, n);
+        process1(0, record, n);
+        return lists;
     }
 
     // 潜台词：record[0..i-1]的皇后，任何两个皇后一定都不共行、不共列，不共斜线
@@ -30,6 +37,20 @@ public class NQueen {
     // 返回值是，摆完所有的皇后，合理的摆法有多少种
     public static int process1(int i, int[] record, int n) {
         if (i == n) { // 终止行
+            StringBuffer sb = new StringBuffer();
+            List<String> strings = new ArrayList<>();
+            for (int j = 0; j < record.length; j++) {
+                for (int k = 0; k < record[j]; k++) {
+                    sb.append(".");
+                }
+                sb.append("Q");
+                for (int k = record[j]+1; k < n; k++) {
+                    sb.append(".");
+                }
+                strings.add(sb.toString());
+                sb = new StringBuffer();
+            }
+            lists.add(strings);
             return 1;
         }
         // 没有到终止位置，还有皇后要摆
@@ -59,7 +80,7 @@ public class NQueen {
     }
 
     public static void main(String[] args) {
-        int n = 4;
+        int n = 1;
         System.out.println(num1(n));
     }
 
