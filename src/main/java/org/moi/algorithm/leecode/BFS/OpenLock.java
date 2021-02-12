@@ -34,6 +34,8 @@ public class OpenLock {
      * 因为当拨动到 "0102" 时这个锁就会被锁定。
      *
      *
+     * 做法：用BFS做，找到最短路径
+     *
      */
 
     public int openLock(String[] deadends, String target) {
